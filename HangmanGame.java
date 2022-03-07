@@ -23,10 +23,10 @@ public class HangmanGame {
 		System.out.println("***HANGMAN***\nRandomly generated number: " + randomNum + "\n");
 		String keyWord = listOfAllCountries.findRandomWord(randomNum).toUpperCase(); // Finds random word
 		for (int i = 0; i < keyWord.length(); i++) {
-			if (keyWord.charAt(keyWord.length() - i - 1) != 'Ý') // In_order to covert 'Ý' to 'I'
+			if (keyWord.charAt(keyWord.length() - i - 1) != 'ï¿½') // In_order to covert 'ï¿½' to 'I'
 				answerWord.add(keyWord.charAt(keyWord.length() - i - 1)); // adds random word to CSLL sequentially
 			else
-				answerWord.add('I'); // In_order to covert 'Ý' to 'I'
+				answerWord.add('I'); // In_order to covert 'ï¿½' to 'I'
 			displayedWord.add('-'); // adds displayed word's dashes
 		}
 		for (int i = 65; i < 91; i++)
@@ -38,14 +38,19 @@ public class HangmanGame {
 			displayedWord.display(); // hidden word like (------)
 			System.out.print("Guess: ");
 			String inputLetter = sc.nextLine();
-			if (inputLetter.equalsIgnoreCase("i")) // in case of user writes "i"or "Ý", it converts "I"
+			boolean f=false;
+			if (inputLetter.equalsIgnoreCase("i")) // in case of user writes "i"or "ï¿½", it converts "I"{
+			{
 				inputLetter = "I";
-			inputLetter = inputLetter.toUpperCase();
+				f=true;
+			}
+			if(!f)
+				inputLetter = inputLetter.toUpperCase();
 			while (inputLetter.length() == 0 || inputLetter.length() > 1 || inputLetter.charAt(0) < 65
 					|| inputLetter.charAt(0) > 92) { // User input's error controls (ASCII chars A to Z)
 				System.out.print("Guess: ");
 				inputLetter = sc.nextLine();
-				if (inputLetter.equalsIgnoreCase("i")) // in case of user writes "i"or "Ý", it converts "I"
+				if (inputLetter.equalsIgnoreCase("i")) // in case of user writes "i"or "ï¿½", it converts "I"
 					inputLetter = "I";
 				inputLetter = inputLetter.toUpperCase();
 			}
